@@ -1,0 +1,36 @@
+digraph WAR {
+  graph [label="WAR — Visão geral da arquitetura orientada a objetos", labelloc=t, fontsize=23, fontname="DejaVu Sans", rankdir=TB, ranksep=1.1, nodesep=0.4, bgcolor="#ffffff", splines=true, pad=0.35];
+  node [shape=box, style="rounded,filled", fillcolor="#eff6ff", color="#64748b", fontname="DejaVu Sans", fontsize=15, margin="0.22,0.14"];
+  edge [color="#475569", fontname="DejaVu Sans", fontsize=11, arrowsize=0.8];
+  Jogo [fillcolor="#1e3a8a", fontcolor=white, fontsize=19];
+  Jogador [fillcolor="#bbf7d0"];
+  Mapa [fillcolor="#bfdbfe"];
+  Territorio;
+  Continente;
+  Objetivo [fillcolor="#fef08a"];
+  Carta [fillcolor="#fef08a"];
+  O1 [label="ObjetivoConquista\nTerritorios", fillcolor="#fefce8"];
+  O2 [label="ObjetivoConquistar\nContinente", fillcolor="#fefce8"];
+  O3 [label="ObjetivoEliminar\nJogador", fillcolor="#fefce8"];
+  C1 [label="CartaInfantaria", fillcolor="#fefce8"];
+  C2 [label="CartaCavalaria", fillcolor="#fefce8"];
+  C3 [label="CartaArtilharia", fillcolor="#fefce8"];
+
+  Jogo -> Mapa [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  Jogo -> Jogador [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  Mapa -> Continente [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  Mapa -> Territorio [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  Continente -> Territorio [dir=both, arrowtail=odiamond, arrowhead=none, label="agregação"];
+  Jogador -> Territorio [arrowhead=vee, label="associação"];
+  Jogador -> Objetivo [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  Jogador -> Carta [dir=both, arrowtail=diamond, arrowhead=none, label="composição"];
+  O1 -> Objetivo [arrowhead=empty, label="herança", color="#b45309"];
+  O2 -> Objetivo [arrowhead=empty, color="#b45309"];
+  O3 -> Objetivo [arrowhead=empty, color="#b45309"];
+  C1 -> Carta [arrowhead=empty, label="herança", color="#b45309"];
+  C2 -> Carta [arrowhead=empty, color="#b45309"];
+  C3 -> Carta [arrowhead=empty, color="#b45309"];
+  {rank=same; Mapa; Jogador;}
+  {rank=same; Continente; Territorio; Objetivo; Carta;}
+  {rank=same; O1; O2; O3; C1; C2; C3;}
+}

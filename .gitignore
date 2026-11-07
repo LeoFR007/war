@@ -1,0 +1,30 @@
+# Artefatos de compilacao (nao versionar no GitHub)
+/build/
+/build-debug/
+/build-make/
+/build-*/
+/cmake-build-*/
+*.o
+*.obj
+*.a
+*.so
+*.exe
+*.d
+*.out
+*.log
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+# Arquivos locais do editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+/war
+/war_tests
+
+# Artefatos da nova interface
+build-gui/

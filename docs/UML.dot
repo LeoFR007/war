@@ -1,0 +1,57 @@
+digraph UML {
+  graph [label="Projeto WAR T1 + GUI 2D — Diagrama de Classes UML (C++17)", labelloc=t, fontsize=25, fontname="DejaVu Sans", rankdir=LR, pad=0.5, nodesep=0.38, ranksep=1.2, bgcolor="#f8fafc", splines=polyline];
+  node [shape=record, style="filled", fillcolor="#ffffff", color="#334155", penwidth=1.25, fontname="DejaVu Sans", fontsize=10, margin="0.12,0.08"];
+  edge [fontname="DejaVu Sans", fontsize=9, arrowsize=0.9, color="#475569", penwidth=1.3];
+
+  Ui [fillcolor="#d1fae5", label="{Ui (interface 2D raylib)|- jogo : unique_ptr&lt;Jogo&gt;\l- origem, destino : int\l- quantidade, dados : int\l- mostrarObjetivo : bool\l|+ iniciar(): void\l+ selecionar(int): void\l+ acao(): void\l+ avancar(): void\l+ notificar(string): void\l}"];
+  Jogo [fillcolor="#dbeafe", label="{Jogo|- mapa_: Mapa\l- jogadores_: vector&lt;unique_ptr&lt;Jogador&gt;&gt;\l- baralho_: deque&lt;unique_ptr&lt;Carta&gt;&gt;\l- fase_: FaseTurno\l- rng_: mt19937\l- vencedor_: Jogador*\l- turnoAtivo_: bool\l|+ executar(): void\l+ executarDemo(int): void\l+ iniciarTurnoAtual(): int\l+ reforcar(id, qtd): void\l+ atacarTerritorio(origem, alvo, dados): RelatorioCombate\l+ moverTropas(origem, destino, qtd): void\l+ trocarCartas(): int\l+ avancarFase(): void\l- verificarVitoria(): bool\l}"];
+  Mapa [fillcolor="#dbeafe", label="{Mapa|- continentes_: vector&lt;unique_ptr&lt;Continente&gt;&gt;\l- territorios_: vector&lt;unique_ptr&lt;Territorio&gt;&gt;\l|+ criarClassico(): Mapa\l+ conectar(string, string): void\l+ buscarTerritorio(string): Territorio&amp;\l+ saoAdjacentes(Territorio, Territorio): bool\l}"];
+  Continente [label="{Continente|- nome_: string\l- bonusExercitos_: int\l- territorios_: vector&lt;Territorio*&gt;\l|+ verificarControle(Jogador): bool\l+ calcularBonus(Jogador): int\l+ adicionarTerritorio(Territorio): void\l}"];
+  Territorio [label="{Territorio|- nome_: string\l- tropas_: int\l- dono_: Jogador*\l- vizinhos_: vector&lt;Territorio*&gt;\l|+ adicionarTropas(int): void\l+ removerTropas(int): void\l+ atacar(Territorio, int, rng): RelatorioCombate\l+ conquistar(Jogador, int): void\l+ ehVizinho(Territorio): bool\l}"];
+  Jogador [fillcolor="#dcfce7", label="{Jogador|- nome_: string\l- cor_: CorJogador\l- territorios_: vector&lt;Territorio*&gt;\l- objetivo_: unique_ptr&lt;Objetivo&gt;\l- exercitosDisponiveis_: int\l- cartas_: vector&lt;unique_ptr&lt;Carta&gt;&gt;\l- eliminadoPor_: Jogador*\l|+ receberExercitos(int): void\l+ distribuirExercitos(Territorio, int): void\l+ atacar(Territorio, Territorio, int, rng): RelatorioCombate\l+ moverTropas(Territorio, Territorio, int): void\l+ conquistarTerritorio(Territorio): void\l+ trocarCartas(): vector&lt;unique_ptr&lt;Carta&gt;&gt;\l+ podeTrocarCartas(): bool\l}"];
+  Objetivo [fillcolor="#fef3c7", label="{Objetivo\l«abstract»|+ foiConcluido(Jogador*): bool = 0\l+ descricao(): string = 0\l+ ~Objetivo()\l}"];
+  ObjetivoConquistaTerritorios [label="{ObjetivoConquistaTerritorios|- quantidade_: int\l|+ foiConcluido(Jogador*): bool\l+ descricao(): string\l}"];
+  ObjetivoConquistarContinente [label="{ObjetivoConquistarContinente|- continentes_: vector&lt;Continente*&gt;\l|+ foiConcluido(Jogador*): bool\l+ descricao(): string\l}"];
+  ObjetivoEliminarJogador [label="{ObjetivoEliminarJogador|- alvo_: Jogador*\l- objetivoAlternativo_: int\l|+ foiConcluido(Jogador*): bool\l+ descricao(): string\l}"];
+  Carta [fillcolor="#fef3c7", label="{Carta\l«abstract»|- territorio_: string\l|+ tipo(): TipoCarta = 0\l+ descricao(): string = 0\l+ ~Carta()\l}"];
+  CartaInfantaria [label="{CartaInfantaria|+ tipo(): TipoCarta\l+ descricao(): string\l}"];
+  CartaCavalaria [label="{CartaCavalaria|+ tipo(): TipoCarta\l+ descricao(): string\l}"];
+  CartaArtilharia [label="{CartaArtilharia|+ tipo(): TipoCarta\l+ descricao(): string\l}"];
+  WarException [fillcolor="#fee2e2", label="{WarException|+ what(): const char*\l}"];
+  TerritorioNaoPertenceAoJogadorException [label="{TerritorioNaoPertenceAoJogadorException}"];
+  AtaqueInvalidoException [label="{AtaqueInvalidoException}"];
+  MovimentoInvalidoException [label="{MovimentoInvalidoException}"];
+  TerritorioNaoAdjacenteException [label="{TerritorioNaoAdjacenteException}"];
+  CorJogador [fillcolor="#e0e7ff", label="{«enum» CorJogador|Vermelho\lAzul\lVerde\lAmarelo\lRoxo\lPreto\l}"];
+  TipoCarta [fillcolor="#e0e7ff", label="{«enum» TipoCarta|Infantaria\lCavalaria\lArtilharia\l}"];
+  FaseTurno [fillcolor="#e0e7ff", label="{«enum» FaseTurno|Reforco\lAtaque\lMovimentacao\lFim\l}"];
+  ResultadoCombate [fillcolor="#e0e7ff", label="{«enum» ResultadoCombate|AvancoAtacante\lResistenciaDefensor\lPerdasMutuas\lConquista\l}"];
+  RelatorioCombate [fillcolor="#e0e7ff", label="{«struct» RelatorioCombate|dadosAtacante: vector&lt;int&gt;\ldadosDefensor: vector&lt;int&gt;\lbaixasAtacante: int\lbaixasDefensor: int\lresultado: ResultadoCombate\lconquistado: bool\ltropasTransferidas: int\lcartasCapturadas: int\l}"];
+
+  Ui -> Jogo [dir=both, arrowtail=diamond, arrowhead=none, label="GUI possui jogo", color="#059669"];
+  Jogo -> Mapa [dir=both, arrowtail=diamond, arrowhead=none, label="1/1 composição", color="#2563eb"];
+  Jogo -> Jogador [dir=both, arrowtail=diamond, arrowhead=none, label="1/2..6 composição", color="#2563eb"];
+  Jogo -> Carta [dir=both, arrowtail=diamond, arrowhead=none, label="baralho"];
+  Mapa -> Continente [dir=both, arrowtail=diamond, arrowhead=none, label="1/6 composição", color="#2563eb"];
+  Mapa -> Territorio [dir=both, arrowtail=diamond, arrowhead=none, label="1/42 composição", color="#2563eb"];
+  Continente -> Territorio [dir=both, arrowtail=odiamond, arrowhead=none, label="agregação"];
+  Jogador -> Territorio [arrowhead=vee, label="controla 0..*"];
+  Jogador -> Objetivo [dir=both, arrowtail=diamond, arrowhead=none, label="1 objetivo"];
+  Jogador -> Carta [dir=both, arrowtail=diamond, arrowhead=none, label="0..* cartas"];
+  Territorio -> Territorio [constraint=false, arrowhead=none, label="vizinhança"];
+  Territorio -> RelatorioCombate [style=dashed, arrowhead=vee, label="retorna"];
+  ObjetivoConquistaTerritorios -> Objetivo [arrowhead=empty, color="#b45309"];
+  ObjetivoConquistarContinente -> Objetivo [arrowhead=empty, color="#b45309"];
+  ObjetivoEliminarJogador -> Objetivo [arrowhead=empty, color="#b45309"];
+  CartaInfantaria -> Carta [arrowhead=empty, color="#b45309"];
+  CartaCavalaria -> Carta [arrowhead=empty, color="#b45309"];
+  CartaArtilharia -> Carta [arrowhead=empty, color="#b45309"];
+  Jogo -> FaseTurno [style=dashed, arrowhead=vee, color="#818cf8"];
+  Jogador -> CorJogador [style=dashed, arrowhead=vee, color="#818cf8"];
+  Carta -> TipoCarta [style=dashed, arrowhead=vee, color="#818cf8"];
+  RelatorioCombate -> ResultadoCombate [style=dashed, arrowhead=vee, color="#818cf8"];
+  TerritorioNaoPertenceAoJogadorException -> WarException [arrowhead=empty, color="#b45309"];
+  AtaqueInvalidoException -> WarException [arrowhead=empty, color="#b45309"];
+  MovimentoInvalidoException -> WarException [arrowhead=empty, color="#b45309"];
+  TerritorioNaoAdjacenteException -> WarException [arrowhead=empty, color="#b45309"];
+}
