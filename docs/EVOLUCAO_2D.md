@@ -24,4 +24,4 @@ O terminal permanece implementado como frontend simples em `Jogo.cpp`. Para a et
 5. Exibir painel de jogadores/objetivos, dados de ataque animados e mensagem de vitória.
 6. Manter `make`, `make test` e o modo terminal funcionando para quem não tiver biblioteca gráfica.
 
-**Estado:** planejamento da próxima etapa. Nenhuma GUI 2D está inclusa nesta entrega.
+**Estado:** a primeira versão da interface 2D (raylib) já foi implementada; os itens acima ficam como referência para evoluções futuras.

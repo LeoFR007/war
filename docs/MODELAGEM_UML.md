@@ -2,10 +2,10 @@
 
 ## Arquivos da UML
 
-- `UML.png`: diagrama completo em imagem, exigido no enunciado.
+- `UML.png`: diagrama completo em imagem.
 - `UML.svg`: mesma imagem vetorial, útil para leitura com zoom.
 - `UML.dot`: **arquivo-fonte editável** do diagrama (ferramenta Graphviz).
-- `UML_resumo.png` e `UML_resumo.dot`: visão de arquitetura mais simples para apresentações.
+- `UML_resumo.png` e `UML_resumo.dot`: visão de arquitetura mais simples.
 
 O arquivo `.dot` utiliza nós no formato *record* para representar classes com atributos e métodos, setas triangulares ocas para herança, diamante preenchido para composição, diamante vazio para agregação e associações direcionadas para as referências sem posse. A legenda fica expressa nos rótulos das relações.
 

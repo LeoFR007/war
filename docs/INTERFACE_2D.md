@@ -1,6 +1,6 @@
 # Interface 2D do WAR com raylib — WSL
 
-A interface 2D é **opcional** e funciona sobre o motor `war_core` já entregue no T1.
+A interface 2D é **opcional** e funciona sobre o motor `war_core` do jogo.
 A biblioteca usada é [raylib](https://www.raylib.com/), uma API simples para jogos 2D, implementada em C e compatível com C++17.
 A janela pode ser **redimensionada** sem perder os cliques no tabuleiro. O programa **é lançado pelo terminal** (`make gui`), mas abre uma **janela gráfica**. Isso requer WSL 2 com WSLg ou outro ambiente Linux com servidor gráfico; não desenha no terminal de texto.
 
@@ -73,7 +73,7 @@ cmake --build build-gui --target war_gui -j 2
 - O mapa é **esquemático**, não usa contornos geopolíticos oficiais e não é um desenho licenciado do tabuleiro WAR.
 - Jogadores locais têm nomes automáticos `Jogador 1`, `Jogador 2` etc.; ainda não há tela de personalização.
 - Não há trilha sonora, salvamento, IA visual ou animação elaborada dos dados. O combate é aplicado corretamente pelo motor; os valores são exibidos em texto.
-- O resultado final deve ser avaliado em ambiente real **WSLg com raylib instalada/baixada**, pois a compilação gráfica requer dependências de terceiros e servidor gráfico.
+- O resultado final deve ser testado em ambiente real **WSLg com raylib instalada/baixada**, pois a compilação gráfica requer dependências de terceiros e servidor gráfico.
 
 ## UML
 

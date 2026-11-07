@@ -1,10 +1,7 @@
 # Projeto WAR — clone educacional em C++17
 
-**Trabalho de Programação Orientada a Objetos (POO)**  
-Versão **2.0 — motor T1 revisado + interface visual 2D opcional** — Jogo completo por **terminal ou janela raylib**, para **2 a 6 pessoas**, ou simulação automática de jogadores.  
+Versão **2.0 — motor do jogo + interface visual 2D opcional** — Jogo completo por **terminal ou janela raylib**, para **2 a 6 pessoas**, ou simulação automática de jogadores.  
 **O motor e o executável de terminal não dependem de bibliotecas gráficas.** A GUI opcional (`make gui`) utiliza **raylib** e preserva a arquitetura C++17.
-
-> **Conferência oficial:** o projeto foi revisado em relação ao arquivo **Enunciado T1 - Jogo Livre.pdf**, fornecido pelo aluno. Veja `docs/CONFERENCIA_T1.md` para a matriz de exigências, limitações e tarefas administrativas ainda pendentes. A **interface 2D com raylib está incluída** nesta entrega como alternativa ao terminal (candidata aos +2 pontos extras; o professor deve avaliar).
 
 ## Interface visual 2D (opcional)
 
@@ -60,18 +57,15 @@ Opcionalmente, execute `executar_windows.bat`, que compila e abre o jogo.
 
    ```bash
    sudo apt update
-   sudo apt install -y build-essential unzip
+   sudo apt install -y build-essential git
    ```
 
-2. Se o arquivo ZIP estiver na pasta **Downloads** do Windows, vá até ela, extraia e entre no projeto (substitua `SEU_USUARIO` pelo nome do usuário do Windows):
+2. Clone o repositório e entre na pasta do projeto:
 
    ```bash
-   cd /mnt/c/Users/SEU_USUARIO/Downloads
-   unzip ProjetoWAR_Final_T1_Revisado.zip
-   cd ProjetoWAR
+   git clone https://github.com/LeoFR007/war.git
+   cd war
    ```
-
-   Se você já extraiu o ZIP pelo Windows, basta entrar na pasta `ProjetoWAR` pelo WSL. Para descobrir onde está: `pwd` e `ls`.
 
 3. Compile o jogo e execute:
 
@@ -217,7 +211,7 @@ A partida também termina quando **apenas um jogador ainda possuir territórios*
 
 ### Simplificações intencionais
 
-Esta é uma **adaptação acadêmica jogável do WAR/Risk**, não uma reprodução exata de cada edição comercial. A interface é textual; a defesa utiliza automaticamente o máximo de três dados; as movimentações são locais (territórios adjacentes), múltiplas durante a fase; os jogadores começam com uma tropa por território e oito tropas adicionais aleatoriamente distribuídas. Não existem negociações, missões/cartas secretas impressas, coringas ou mapa gráfico interativo.
+Esta é uma **adaptação jogável do WAR/Risk**, não uma reprodução exata de cada edição comercial. A interface é textual; a defesa utiliza automaticamente o máximo de três dados; as movimentações são locais (territórios adjacentes), múltiplas durante a fase; os jogadores começam com uma tropa por território e oito tropas adicionais aleatoriamente distribuídas. Não existem negociações, missões/cartas secretas impressas, coringas ou mapa gráfico interativo.
 
 ## 4. Arquitetura de classes (UML)
 
@@ -290,7 +284,7 @@ Os comandos interativos usam `try/catch` nas ações críticas, informando a fal
 ## 7. Estrutura do projeto
 
 ```text
-ProjetoWAR/
+war/
 ├── CMakeLists.txt
 ├── README.md
 ├── Makefile
@@ -323,9 +317,7 @@ ProjetoWAR/
 │   ├── EXEMPLO_EXECUCAO.txt
 │   ├── UML.svg
 │   ├── RELATORIO.md
-│   ├── CONFERENCIA_T1.md
 │   ├── MODELAGEM_UML.md
-│   ├── ROTEIRO_APRESENTACAO.md
 │   └── EVOLUCAO_2D.md
 └── tests/
     └── testes.cpp
@@ -340,28 +332,6 @@ ProjetoWAR/
 
 Os testes incluem quantidade de territórios e continentes, simetria de adjacências, conexão intercontinental, posse, movimentações inválidas, reforço, ataque, conquista, cartas, eliminação com transferência de cartas, troca obrigatória com cinco cartas, fases da API do motor, partidas com 2 a 6 jogadores e os três objetivos.
 
-## 9. Entrega no GitHub — exigência do professor
+## 9. Créditos
 
-O PDF exige **um único entregável: o link do repositório**, e **todos os integrantes devem estar cadastrados como colaboradores**. A entrega deve ocorrer **até 01/11/2026 às 23h50**; o professor também exige que a escolha do jogo seja previamente combinada com ele.
-
-Dentro da raiz do projeto, para criar o histórico local (se ainda não existe um repositório):
-
-```bash
-git init
-git add .
-git commit -m "Projeto WAR T1 - versao revisada C++ e UML"
-```
-
-Crie um repositório vazio na sua conta GitHub e associe-o conforme o endereço fornecido pela plataforma, por exemplo:
-
-```bash
-git branch -M main
-git remote add origin URL_DO_REPOSITORIO
-git push -u origin main
-```
-
-**Não copie `URL_DO_REPOSITORIO` literalmente**: substitua pelo endereço real do seu projeto. Cadastre todos os colaboradores no GitHub e confira se **`docs/UML.png` e `docs/UML.dot`** estão publicados. Consulte `docs/CONFERENCIA_T1.md` e `docs/ROTEIRO_APRESENTACAO.md`.
-
-## 10. Créditos e licença de uso acadêmico
-
-Implementação original e didática inspirada nas mecânicas gerais de jogos de conquista territorial. Não utiliza artes, logotipos, textos de cartas ou outros materiais licenciados de jogos comerciais. O projeto é disponibilizado para estudo, modificação e apresentação acadêmica.
+Implementação original e didática inspirada nas mecânicas gerais de jogos de conquista territorial. Não utiliza artes, logotipos, textos de cartas ou outros materiais licenciados de jogos comerciais. O projeto é disponibilizado para estudo e modificação.

@@ -1,5 +1,5 @@
 digraph UML {
-  graph [label="Projeto WAR T1 + GUI 2D — Diagrama de Classes UML (C++17)", labelloc=t, fontsize=25, fontname="DejaVu Sans", rankdir=LR, pad=0.5, nodesep=0.38, ranksep=1.2, bgcolor="#f8fafc", splines=polyline];
+  graph [label="Projeto WAR + GUI 2D — Diagrama de Classes UML (C++17)", labelloc=t, fontsize=25, fontname="DejaVu Sans", rankdir=LR, pad=0.5, nodesep=0.38, ranksep=1.2, bgcolor="#f8fafc", splines=polyline];
   node [shape=record, style="filled", fillcolor="#ffffff", color="#334155", penwidth=1.25, fontname="DejaVu Sans", fontsize=10, margin="0.12,0.08"];
   edge [fontname="DejaVu Sans", fontsize=9, arrowsize=0.9, color="#475569", penwidth=1.3];
 

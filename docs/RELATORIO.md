@@ -3,12 +3,12 @@
 ## 1. Identificação do projeto
 
 **Título:** Jogo WAR: modelagem UML e orientação a objetos em C++17.  
-**Tipo:** Trabalho acadêmico — implementação de jogo preexistente.  
-**Forma de execução:** Terminal de texto; 2 a 6 jogadores humanos ou bots demonstrativos. Revisado frente ao PDF do T1, versão 1.1.
+**Tipo:** Implementação de um jogo de tabuleiro de conquista territorial.  
+**Forma de execução:** Terminal de texto; 2 a 6 jogadores humanos ou bots demonstrativos.
 
 ## 2. Introdução e objetivo
 
-O software recria as mecânicas essenciais de um jogo de conquista territorial, incluindo mapas, continentes, domínios, distribuição de exércitos, turnos, combate com dados, cartas e objetivos pessoais. O foco do trabalho é utilizar conceitos de POO de forma verificável: classes com responsabilidades específicas, herança, abstração, composição, agregação, associações, lambdas, enumerações e tratamento de erros.
+O software recria as mecânicas essenciais de um jogo de conquista territorial, incluindo mapas, continentes, domínios, distribuição de exércitos, turnos, combate com dados, cartas e objetivos pessoais. O foco do projeto é utilizar conceitos de POO de forma verificável: classes com responsabilidades específicas, herança, abstração, composição, agregação, associações, lambdas, enumerações e tratamento de erros.
 
 ## 3. Modelagem UML e arquitetura
 
@@ -64,7 +64,7 @@ Inicializar mapa -> distribuir territórios -> definir objetivos -> montar baral
 | UML com classes e relacionamentos | `docs/UML.png`, `docs/UML.svg` |
 | Estrutura modular `.h` e `.cpp` | `include/`, `src/` |
 | Testes de regras, fases e troca obrigatória | `tests/testes.cpp` |
-| Projeto publicável como repositório | `.gitignore`, `README.md`, `docs/CONFERENCIA_T1.md` |
+| Projeto publicável como repositório | `.gitignore`, `README.md` |
 | README com instruções de compilação | `README.md` |
 
 ## 6. Demonstração de orientação a objetos
@@ -103,8 +103,6 @@ Inicializar mapa -> distribuir territórios -> definir objetivos -> montar baral
 
 A versão não implementa interface gráfica, escolhas de dados de defesa, todas as regras especiais de diferentes edições comerciais ou multiplayer em rede. A escolha das cartas-objetivo é determinística e a distribuição inicial é simplificada. O motor agora expõe operações por fase para facilitar um frontend 2D em SFML, raylib ou SDL2; a etapa gráfica ainda depende de implementação e testes específicos. Consulte `EVOLUCAO_2D.md`.
 
-**Exigências externas ao código:** aprovação prévia do jogo pelo professor, publicação de repositório, cadastro de todos os colaboradores e apresentação em aula; detalhes em `CONFERENCIA_T1.md`.
-
 ## 9. Conclusão
 
-O projeto consolida os pilares de POO em um domínio concreto com regras não triviais. O modelo de classes permite modificar os tipos de objetivos, cartas e a apresentação visual preservando as regras centrais. A compilação via CMake e a suíte de testes facilitam reprodução e avaliação acadêmica.
+O projeto consolida os pilares de POO em um domínio concreto com regras não triviais. O modelo de classes permite modificar os tipos de objetivos, cartas e a apresentação visual preservando as regras centrais. A compilação via CMake e a suíte de testes facilitam a reprodução e a validação do projeto.

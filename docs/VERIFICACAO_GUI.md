@@ -1,6 +1,6 @@
 # Registro de verificacao — interface 2D WAR
 
-## Verificado na entrega
+## Verificações realizadas
 
 - O jogo original continua compilando via `make` e `cmake` com C++17.
 - O alvo `make test` executou com sucesso o conjunto de testes da versao por terminal.
