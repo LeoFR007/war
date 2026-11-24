@@ -1,0 +1,149 @@
+@startuml classes
+' Diagrama de classes em nivel intermediario: classes, atributos e metodos principais,
+' enumeracoes e as relacoes que importam. Getters e detalhes internos foram omitidos.
+title WAR - Diagrama de classes
+
+skinparam shadowing false
+skinparam dpi 150
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide empty members
+
+allowmixing
+actor "Jogador" as Pessoa
+
+package "Controller" {
+  class ControladorJogo {
+    - fase : Fase
+    - selecionado : Territorio*
+    + tratarEvento(evento)
+    + clicarTerritorio(id)
+    + proximaFase()
+    + atualizar(segundos)
+  }
+  enum Fase {
+    Reforco
+    Ataque
+    Movimento
+  }
+}
+
+package "Model" {
+  class Jogo {
+    - turno : int
+    - historico : vector<string>
+    + executar(maxTurnos)
+    + iniciarTurno() : int
+    + finalizarTurno()
+    + atacar(atacante, origem, alvo, dados) : ResultadoAtaque
+    + trocarCartas(jogador) : int
+    - rolarDados(quantidade) : vector<int>
+  }
+
+  class Mapa {
+    + getTerritorio(id) : Territorio*
+    + getContinente(indice) : Continente*
+  }
+
+  class Territorio {
+    - nome : string
+    - tropas : int
+    + adicionarTropas(qtd)
+    + removerTropas(qtd)
+    + ehVizinho(outro) : bool
+  }
+
+  class Continente {
+    - nome : string
+    - bonus : int
+    + controladoPor(jogador) : bool
+  }
+
+  abstract class Jogador {
+    - nome : string
+    - exercitos : int
+    + {abstract} jogarTurno(jogo)
+    + colocarExercitos(territorio, qtd)
+    + moverTropas(origem, destino, qtd)
+    + conquistar(territorio)
+    + trocarCartas() : vector<Carta>
+  }
+
+  class JogadorHumano {
+    + jogarTurno(jogo)
+  }
+
+  class JogadorBot {
+    + jogarTurno(jogo)
+  }
+
+  abstract class Objetivo {
+    + {abstract} foiCumprido(jogador) : bool
+    + {abstract} descricao() : string
+  }
+
+  class ObjetivoTerritorios
+  class ObjetivoContinentes
+  class ObjetivoEliminar
+
+  class Carta {
+    - territorio : string
+    - tipo : TipoCarta
+  }
+
+  enum TipoCarta {
+    Infantaria
+    Cavalaria
+    Artilharia
+  }
+
+  class WarException
+}
+
+package "View" {
+  class MapaView {
+    + desenhar(janela, jogo)
+    + territorioEm(ponto) : int
+  }
+  class PainelView
+  class EventosView
+  class BarraSuperiorView
+  class Camera
+  class RegioesMapa
+}
+
+' ----- entrada do usuario
+Pessoa --> ControladorJogo : cliques e teclas
+ControladorJogo --> Jogo : executa jogadas
+ControladorJogo --> Fase
+
+' ----- composicao e agregacao
+Jogo "1" *-- "1" Mapa
+Jogo "1" *-- "2..6" Jogador
+Jogo "1" *-- "*" Carta : baralho
+Mapa "1" *-- "42" Territorio
+Mapa "1" *-- "6" Continente
+Continente o-- Territorio
+Jogador "1" *-- "1" Objetivo
+Jogador "1" *-- "*" Carta : mão
+Jogador --> "*" Territorio : controla
+Territorio --> Territorio : vizinhos
+Carta --> TipoCarta
+
+' ----- heranca
+Jogador <|-- JogadorHumano
+Jogador <|-- JogadorBot
+Objetivo <|-- ObjetivoTerritorios
+Objetivo <|-- ObjetivoContinentes
+Objetivo <|-- ObjetivoEliminar
+
+' ----- dependencias
+Jogo ..> WarException : lança
+MapaView *-- Camera
+MapaView *-- RegioesMapa
+MapaView ..> Jogo : lê
+PainelView ..> Jogo : lê
+EventosView ..> Jogo : lê
+BarraSuperiorView ..> Jogo : lê
+
+@enduml

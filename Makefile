@@ -24,7 +24,7 @@ demo: war
 	./war --demo --jogadores 4 --seed 42
 
 uml:
-	dot -Tpng docs/UML.dot -o docs/UML.png
+	plantuml -tpng -charset UTF-8 docs/uml/classes.puml
 
 clean:
 	rm -f war war_gui

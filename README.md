@@ -13,7 +13,7 @@ make jogar      # compila e abre a interface grafica (1 humano contra 3 bots)
 make            # compila o jogo de terminal (gera ./war)
 make run        # partida com 3 jogadores humanos
 make demo       # partida automatica entre 4 bots (seed 42)
-make uml        # regenera docs/UML.png a partir de docs/UML.dot (requer graphviz)
+make uml        # regenera docs/uml/classes.png a partir de classes.puml (requer plantuml)
 ```
 
 Sem `make`, o comando equivalente é:
@@ -66,7 +66,7 @@ war-versao-final/
 ├── controller/  ControladorJogo: transforma cliques/teclas em chamadas ao model
 ├── main/        main.cpp (terminal) e main_gui.cpp (janela)
 ├── assets/      fontes Ubuntu (Ubuntu Font Licence, livre para redistribuir)
-├── docs/        UML (.dot e .png), descrição do UML e captura da interface
+├── docs/        diagrama de classes UML (PlantUML), descrição do diagrama e captura da interface
 └── Makefile
 ```
 
@@ -87,4 +87,8 @@ war-versao-final/
 | Exceções | `WarException` lançada em jogadas inválidas e tratada com `try/catch` em `JogadorHumano`, `JogadorBot`, `ControladorJogo` (mensagem em vermelho no painel) e nos dois `main` |
 | Coleções | `std::vector` e `std::string` em todo o projeto |
 
-Diagrama de classes: [`docs/UML.png`](docs/UML.png) (fonte editável: [`docs/UML.dot`](docs/UML.dot)); explicação da notação em [`docs/MODELAGEM_UML.md`](docs/MODELAGEM_UML.md).
+## Diagrama de classes (UML)
+
+As classes de cada camada com seus atributos e métodos principais, as enumerações e as relações essenciais. O arquivo-fonte editável (PlantUML) é [`docs/uml/classes.puml`](docs/uml/classes.puml), e a explicação da notação está em [`docs/MODELAGEM_UML.md`](docs/MODELAGEM_UML.md).
+
+![Diagrama de classes](docs/uml/classes.png)
